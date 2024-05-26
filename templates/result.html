@@ -1,0 +1,29 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css' )}}">
+    <title>House Price Prediction Result - Bangalore</title>
+</head>
+<body>
+    <h2>House Price Prediction Result - Bangalore</h2>
+    <div class="result1">
+        <p>The approximate price of a {{input_form.loc['No. of Bedrooms',0]}} BHK property Located in {{input_form.loc['Location',0]}}, Bangalore, with an area of 
+            {{input_form.loc['Area',0]}} square feet and with the below amenities present, is given below:</p>
+    </div>
+    <div class="result">
+        {% for var in input_form.index %}
+            {% if input_form.loc[var,0] == 'Yes'%}
+            <p>{{ var }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="result">
+    <!-- <p>Predicted Price: {{ predicted_price }}</p> -->
+    <p>Predicted Price : {{ predicted_price }} {{ Price_unit }}</p>
+    </div>
+    <button onclick="history.back()">Go Back</a></button>
+</body>
+</html>
